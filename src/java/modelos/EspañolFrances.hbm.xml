@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/09/2019 05:13:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Espa&#241;olFrances" table="espa&#241;ol_frances" catalog="diccionario" optimistic-lock="version">
+        <id name="idEspFran" type="java.lang.Integer">
+            <column name="id_Esp_Fran" />
+            <generator class="identity" />
+        </id>
+        <property name="esp" type="string">
+            <column name="Esp" length="200" not-null="true" />
+        </property>
+        <property name="frances" type="string">
+            <column name="Frances" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
