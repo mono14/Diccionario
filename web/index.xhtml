@@ -13,12 +13,22 @@
     <h:body class="body" style="height: 50% ; width: 99%">
         <h:form id="myform" >
             <p:growl id="msgs" showDetail="true" />
-            <p:dataTable id="tableConsulta" var="diccionario" editable="true"  value="#{agregar_Palabras.esp_fra}"  >
-                <p:ajax event="rowEdit" listener="#{agregar_Palabras.onRowEdit}" update=":myform:msgs"/>
+            <p:dataTable id="tableConsulta" var="diccionario" editable="true"  value="#{agregar_Palabras.esp_fra}"
+                          widgetVar="diccionarioTable" emptyMessage="palabra no Encontrada"
+                          filteredValue="#{agregar_Palabras.filteredPalabras}">
+                  <f:facet name="header">
+                    <p:outputPanel>
+                        <h:outputText value="Search all fields:" />
+                        <p:inputText id="globalFilter" onkeyup="PF('diccionarioTable').filter()"
+                                     style="width:150px" placeholder="Enter keyword" value="#{agregar_Palabras.busqueda}"/>
+                    </p:outputPanel>
+                </f:facet>
+                <p:ajax event="rowEdit" listener="#{agregar_Palabras.onRowEdit}" update=":myform:msgs" />
                 <p:ajax event="rowEditCancel" listener="#{agregar_Palabras.onRowCancel}" update=":myform:msgs" />
                 <!--<p:column headerText="Id">
                    <h:outputText value="#"{diccionario.idEspFran}" />
                 </p:column>-->
+              
                 <p:column headerText="Español">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{diccionario.esp}" /></f:facet>
@@ -36,12 +46,12 @@
                 <p:column style="width:32px">
                     <p:rowEditor />
                 </p:column>
-                <p:column style="width: 100px">
+                <!--<p:column style="width: 100px">
                     <p:commandButton actionListener="#{agregar_Palabras.botonEliminar(diccionario.idEspFran)}"
                                      update=":myform:tableConsulta"
                                      value="eliminar"
                                      />
-                </p:column>
+                </p:column>-->
             </p:dataTable>
         </h:form>
 
@@ -55,10 +65,10 @@
             <p:growl id="msgs5" showDetail="true" />
             <p:panel id="basic" header="Insertar">
                 <h:panelGrid columns="2" cellpadding="2">
-                    
+
                     <h:outputText value="Español"/>
                     <h:inputText value="#{agregar_Palabras.e_f.esp}" />
-                    
+
                     <h:outputText value="Frances"/>
                     <h:inputText value="#{agregar_Palabras.e_f.frances}" />
                     <p:commandButton id="boton" value="enviar" 

@@ -14,6 +14,7 @@ import modelos.EspañolFrances;
  */
 public interface Esp_Fran_Interfaz {
     public List<EspañolFrances> lista();
+    public List<EspañolFrances> listaFiltrado(String busqueda);
     public boolean insertar(EspañolFrances esp_fra);
     public int personaEliminada(EspañolFrances esp_fra);
     public boolean actualizacion(EspañolFrances esp_fra);

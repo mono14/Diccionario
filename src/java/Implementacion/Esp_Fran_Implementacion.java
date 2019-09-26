@@ -19,13 +19,12 @@ public class Esp_Fran_Implementacion implements Interfaz.Esp_Fran_Interfaz {
 
     @Override
     public List<EspañolFrances> lista() {
-           Session session = null;
+        Session session = null;
         List<EspañolFrances> lista = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from EspañolFrances");
             lista = (List<EspañolFrances>) query.list();
-            System.out.println("--->"+lista.size());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
@@ -87,7 +86,6 @@ public class Esp_Fran_Implementacion implements Interfaz.Esp_Fran_Interfaz {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.update(esp_fra);
-            System.out.println("---->" + esp_fra.getEsp());
             aux = true;
         } catch (Exception e) {
             aux = false;
@@ -98,6 +96,24 @@ public class Esp_Fran_Implementacion implements Interfaz.Esp_Fran_Interfaz {
             }
         }
         return aux;
+    }
+
+    @Override
+    public List<EspañolFrances> listaFiltrado(String busqueda) {
+        Session session = null;
+        List<EspañolFrances> lista = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.createQuery("from EspañolFrances where esp='" + busqueda + "'");
+            lista = (List<EspañolFrances>) query.list();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return lista;
     }
 
 }

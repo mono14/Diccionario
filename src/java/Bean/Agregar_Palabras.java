@@ -31,7 +31,27 @@ public class Agregar_Palabras {
     public int idUsuaidEspFranrio;
     public String esp;
     public String frances;
+    private List<EspañolFrances> filteredPalabras;
+    public String busqueda;
 
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
+
+    public List<EspañolFrances> getFilteredPalabras() {
+        Esp_Fran_Interfaz lista_Diccionario=new Esp_Fran_Implementacion();
+        System.out.println("--->"+busqueda);
+        filteredPalabras=lista_Diccionario.listaFiltrado(busqueda);
+        return filteredPalabras;
+    }
+
+    public void setFilteredPalabras(List<EspañolFrances> filteredPalabras) {
+        this.filteredPalabras = filteredPalabras;
+    }
     public Agregar_Palabras() {
         e_f = new EspañolFrances();
     }
@@ -126,4 +146,5 @@ public class Agregar_Palabras {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
+   
 }
